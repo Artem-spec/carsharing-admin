@@ -10,8 +10,10 @@ import { useHistory } from 'react-router';
 const FormAuthorization = () => {
     const classnames = classnamesBind.bind(styles);
     const dispatch = useDispatch();
-    const [login, setLogin] = useState('intern');
-    const [pass, setPass] = useState('intern-S!');
+    // const [login, setLogin] = useState('intern');
+    // const [pass, setPass] = useState('intern-S!');
+    const [login, setLogin] = useState('');
+    const [pass, setPass] = useState('');
     const [error, setError] = useState(false);
     const history = useHistory();
 
@@ -28,21 +30,17 @@ const FormAuthorization = () => {
                 })
                 .then((res) => res.data)
                 .catch(() => setError(true));
-            dispatch(
-                changeAuthorization(
-                    typeof response === 'object'
-                        ? {
-                              auth_success: response.refrash_token,
-                              auth_error: false,
-                          }
-                        : {
-                              auth_success: '',
-                              auth_error: true,
-                          }
-                )
-            );
-            setToken(typeof response === 'object' ? response.access_token : '');
-            history.push('/panel');
+            if (typeof response === 'object') {
+                dispatch(
+                    changeAuthorization({
+                        auth_success: response.refrash_token,
+                        auth_error: false,
+                    })
+                );
+                setToken(response.access_token);
+                history.push('/panel');
+            }
+
             return response;
         };
         post();
@@ -67,7 +65,7 @@ const FormAuthorization = () => {
                 id="login"
                 required
                 onChange={(e) => handleChangeInput(e, setLogin)}
-                defaultValue={login}
+                // defaultValue={login}
             />
             <label className={classnames('form-label')} htmlFor="password">
                 Пароль
@@ -78,7 +76,7 @@ const FormAuthorization = () => {
                 type="password"
                 required
                 onChange={(e) => handleChangeInput(e, setPass)}
-                defaultValue={pass}
+                // defaultValue={pass}
             />
             <p
                 className={classnames('error-msg', {
