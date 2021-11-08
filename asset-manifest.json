@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/carsharing-admin/static/css/main.ef2572f1.chunk.css",
-    "main.js": "/carsharing-admin/static/js/main.cd3435a3.chunk.js",
-    "main.js.map": "/carsharing-admin/static/js/main.cd3435a3.chunk.js.map",
-    "runtime-main.js": "/carsharing-admin/static/js/runtime-main.c39ba946.js",
-    "runtime-main.js.map": "/carsharing-admin/static/js/runtime-main.c39ba946.js.map",
-    "static/js/2.183894b1.chunk.js": "/carsharing-admin/static/js/2.183894b1.chunk.js",
-    "static/js/2.183894b1.chunk.js.map": "/carsharing-admin/static/js/2.183894b1.chunk.js.map",
-    "static/css/3.c8362e3e.chunk.css": "/carsharing-admin/static/css/3.c8362e3e.chunk.css",
-    "static/js/3.619a18b0.chunk.js": "/carsharing-admin/static/js/3.619a18b0.chunk.js",
-    "static/js/3.619a18b0.chunk.js.map": "/carsharing-admin/static/js/3.619a18b0.chunk.js.map",
+    "main.css": "/carsharing-admin/static/css/main.e939cefb.chunk.css",
+    "main.js": "/carsharing-admin/static/js/main.e99da8db.chunk.js",
+    "main.js.map": "/carsharing-admin/static/js/main.e99da8db.chunk.js.map",
+    "runtime-main.js": "/carsharing-admin/static/js/runtime-main.389d0dd8.js",
+    "runtime-main.js.map": "/carsharing-admin/static/js/runtime-main.389d0dd8.js.map",
+    "static/js/2.6d0a231a.chunk.js": "/carsharing-admin/static/js/2.6d0a231a.chunk.js",
+    "static/js/2.6d0a231a.chunk.js.map": "/carsharing-admin/static/js/2.6d0a231a.chunk.js.map",
+    "static/css/3.ba5f49a9.chunk.css": "/carsharing-admin/static/css/3.ba5f49a9.chunk.css",
+    "static/js/3.5baabf17.chunk.js": "/carsharing-admin/static/js/3.5baabf17.chunk.js",
+    "static/js/3.5baabf17.chunk.js.map": "/carsharing-admin/static/js/3.5baabf17.chunk.js.map",
     "index.html": "/carsharing-admin/index.html",
-    "static/css/3.c8362e3e.chunk.css.map": "/carsharing-admin/static/css/3.c8362e3e.chunk.css.map",
-    "static/css/main.ef2572f1.chunk.css.map": "/carsharing-admin/static/css/main.ef2572f1.chunk.css.map",
-    "static/js/2.183894b1.chunk.js.LICENSE.txt": "/carsharing-admin/static/js/2.183894b1.chunk.js.LICENSE.txt",
+    "static/css/3.ba5f49a9.chunk.css.map": "/carsharing-admin/static/css/3.ba5f49a9.chunk.css.map",
+    "static/css/main.e939cefb.chunk.css.map": "/carsharing-admin/static/css/main.e939cefb.chunk.css.map",
+    "static/js/2.6d0a231a.chunk.js.LICENSE.txt": "/carsharing-admin/static/js/2.6d0a231a.chunk.js.LICENSE.txt",
     "static/media/index.css": "/carsharing-admin/static/media/helvetica_regular.bc3b5d25.woff2"
   },
   "entrypoints": [
-    "static/js/runtime-main.c39ba946.js",
-    "static/js/2.183894b1.chunk.js",
-    "static/css/main.ef2572f1.chunk.css",
-    "static/js/main.cd3435a3.chunk.js"
+    "static/js/runtime-main.389d0dd8.js",
+    "static/js/2.6d0a231a.chunk.js",
+    "static/css/main.e939cefb.chunk.css",
+    "static/js/main.e99da8db.chunk.js"
   ]
 }
