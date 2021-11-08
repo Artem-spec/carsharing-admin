@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/bootstrap.scss";
+body{    
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  background-color: #e5e5e5;
+}
+.spinner-border {   
+    border: 0.25em solid white;
+    border-right-color: transparent;
+}

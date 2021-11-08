@@ -20,13 +20,13 @@ const App = () => {
                 changeAuthorization({ auth_success: token, auth_error: false })
             );
             history.push('/panel');
-        }
+        } else history.push('/admin');
     }, []);
 
     return (
         <Router>
             <Switch>
-                <PublicRoute exact={true} path="/admin">
+                <PublicRoute path="/admin">
                     <Authorization />
                 </PublicRoute>
                 <PrivateRoute path="/panel" isAuthenticated={auth.auth_error}>
