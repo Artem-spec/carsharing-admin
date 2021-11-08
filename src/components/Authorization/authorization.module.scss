@@ -1,0 +1,43 @@
+@import '../../styles/global.scss';
+
+.wrap-center {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $color-basic-text;
+
+    .header {
+        margin: 16px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        .heading-h1 {
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 28px;
+            text-align: center;
+        }
+        .heading-h1_margin {
+            margin: 0 11px;
+        }
+    }
+    .wrap-form {
+        width: 376px;
+        height: max-content;
+        padding: 20px 18px;
+        border-radius: 9px;
+        background-color: white;
+    }
+}
+@media (max-width: 500px) {
+    .wrap-center {
+        .wrap-form {
+            width: 100%;
+            border-radius: initial;
+        }
+    }
+}
