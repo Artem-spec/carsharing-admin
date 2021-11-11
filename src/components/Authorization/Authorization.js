@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import classnamesBind from 'classnames/bind';
 import styles from './authorization.module.scss';
-import Logo from '../Logo/Logo';
+import { Logo } from '../imgSVG/imgSVG';
 import FormAuthorization from './FormAuthorization/FormAuthorization';
 import { useHistory } from 'react-router';
 

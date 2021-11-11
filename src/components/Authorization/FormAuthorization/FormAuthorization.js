@@ -3,8 +3,6 @@ import { useDispatch } from 'react-redux';
 import classnamesBind from 'classnames/bind';
 import styles from './formAuthorization.module.scss';
 import { changeAuthorization } from '../../../store/actions/actionAuthorization';
-import axiosConfigAuth from '../../../utils/axiosConfigAuth';
-import { setToken } from '../../../utils/sessionToken';
 import { useHistory } from 'react-router';
 
 const FormAuthorization = () => {
@@ -22,28 +20,7 @@ const FormAuthorization = () => {
     // ---------------------------------------------------------------
     const handleClickBtnForm = (e) => {
         e.preventDefault();
-        const post = async () => {
-            const response = await axiosConfigAuth
-                .post('/auth/login', {
-                    username: login,
-                    password: pass,
-                })
-                .then((res) => res.data)
-                .catch(() => setError(true));
-            if (typeof response === 'object') {
-                dispatch(
-                    changeAuthorization({
-                        auth_success: response.refrash_token,
-                        auth_error: false,
-                    })
-                );
-                setToken(response.access_token);
-                history.push('/panel');
-            }
-
-            return response;
-        };
-        post();
+        dispatch(changeAuthorization(login, pass, setError, history));
     };
     // ---------------------------------------------------------------
     //  Событие изменения input

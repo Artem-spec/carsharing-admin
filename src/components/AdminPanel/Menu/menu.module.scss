@@ -1,43 +1,34 @@
 @import '../../../styles/global.scss';
 .menu {
     position: relative;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0px 1px 75px rgba(90, 97, 105, 0.11),
+        0px 2px 4px rgba(90, 97, 105, 0.12),
+        0px 7.5px 11px rgba(90, 97, 105, 0.1),
+        0px 3.5px 17.5px rgba(165, 182, 201, 0.1);
 }
-.menu-list {
-    margin: 0;
-    padding: 0;
+.menu-logo {
+    width: 285px;
+    height: 68px;
     display: flex;
-    flex-direction: column;
-}
-.menu-item {
-    height: 58px;
-    display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 0px #e1e5eb;
+}
+.menu-logo-heading-h4 {
     font-style: normal;
     font-weight: normal;
-    font-size: 15px;
-    line-height: 17px;
-    letter-spacing: -0.234375px;
-    box-shadow: inset 0px -1px 0px #e1e5eb;
-    text-decoration: none;
+    font-size: 16px;
+    line-height: 18px;
     color: $color-basic-text;
 }
-.menu-item:hover {
-    background-color: rgb(240, 234, 234);
+.menu-logo-heading-h4_margin {
+    margin: 0 7px;
 }
-.active {
-    display: block !important;
-}
-@media (max-width: 1023px) {
-}
+
 @media (max-width: 767px) {
-    .menu {
-        width: 100%;
-        display: none;
-        position: absolute;
-        background-color: white;
-    }
-    .menu-item {
+    .menu-logo{
         width: 100%;
     }
 }

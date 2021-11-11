@@ -16,11 +16,11 @@ const App = () => {
     useEffect(() => {
         const token = getToken();
         if (token) {
-            dispatch(
-                changeAuthorization({ auth_success: token, auth_error: false })
-            );
+            dispatch(changeAuthorization());
             history.push('/panel');
-        } else history.push('/admin');
+        } else {
+            history.push('/admin');
+        }
     }, []);
 
     return (

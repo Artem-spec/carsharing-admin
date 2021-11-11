@@ -1,34 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import classnamesBind from 'classnames/bind';
 import styles from './menu.module.scss';
-import menuItems from './utils/MenuItems';
+import { Burger, Logo } from '../../imgSVG/imgSVG';
+import MenuItems from './MenuItems/MenuItems';
 
-const Menu = (props) => {
-    const { active } = props;
+const Menu = () => {
     const classnames = classnamesBind.bind(styles);
+    const [burgerActive, setBurgerActive] = useState(false);
     return (
-        <nav
-            className={classnames('menu', {
-                active: active,
-            })}
-        >
-            <ul className={classnames('menu-list')}>
-                {menuItems.map((item, index) => (
-                    <Link
-                        key={index}
-                        to={item.path}
-                        className={classnames('menu-item')}
-                    >
-                        {item.desc}
-                    </Link>
-                ))}
-            </ul>
-        </nav>
+        <div className={classnames('menu')}>
+            <div className={classnames('menu-logo')}>
+                <Burger
+                    burgerActive={burgerActive}
+                    setBurgerActive={setBurgerActive}
+                />
+                <Logo width={21} height={21} />
+                <h4
+                    className={classnames(
+                        'menu-logo-heading-h4',
+                        'menu-logo-heading-h4_margin'
+                    )}
+                >
+                    Need for drive
+                </h4>
+            </div>
+            <MenuItems active={burgerActive} />
+        </div>
     );
-};
-Menu.propTypes = {
-    active: PropTypes.bool,
 };
 export default Menu;
