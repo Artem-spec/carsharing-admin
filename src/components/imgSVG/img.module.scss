@@ -1,0 +1,14 @@
+.burger {
+    display: none;
+    position: absolute;
+    left: 15px;
+}
+.burger-active{
+    fill: #039F67;
+}
+
+@media (max-width: 767px) {
+    .burger {
+        display: block;
+    }
+}
