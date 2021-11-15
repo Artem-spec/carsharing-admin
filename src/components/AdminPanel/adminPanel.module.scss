@@ -1,0 +1,32 @@
+.wrap {
+    width: 100vw;
+    min-height: 100vh;
+    max-height: max-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.content {
+    width: 100%;
+    min-height: 100vh;
+    max-height: max-content;
+}
+
+.wrap-main-footer {
+    height: calc(100vh - 68px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+    .wrap {
+        flex-direction: column;
+    }    
+    .menu-logo{
+        width: 100%;
+    }
+    .wrap-main-footer {
+        height: calc(100vh - 136px);
+    }
+}
