@@ -1,0 +1,9 @@
+.car-filter{
+    display: flex;
+}
+
+@media(max-width: 767px){
+    .car-filter{
+        flex-direction: column;
+    }
+}

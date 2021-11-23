@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import classnamesBind from 'classnames/bind';
 import styles from './menuItems.module.scss';
 import menuItems from './utils/menuItems';
@@ -8,6 +8,7 @@ import menuItems from './utils/menuItems';
 const MenuItems = (props) => {
     const { active } = props;
     const classnames = classnamesBind.bind(styles);
+    const { path } = useRouteMatch();
     return (
         <nav
             className={classnames('menu', {
@@ -18,7 +19,7 @@ const MenuItems = (props) => {
                 {menuItems.map((item, index) => (
                     <Link
                         key={index}
-                        to={item.path}
+                        to={`${path}${item.path}`}
                         className={classnames('menu-item')}
                     >
                         {item.desc}

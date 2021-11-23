@@ -1,0 +1,68 @@
+.points{
+    margin: 30px 20px;
+    width: max-content;
+    overflow-x: scroll;
+}
+.points__heading-h3{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 29px;
+    line-height: 33px;
+    letter-spacing: -0.725px;
+    color: #3D5170;
+}
+.points__content{
+    width: 100%;
+    padding: 10px;
+    height: max-content;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.points__wrap-img{
+    width: 200px;
+    height: 100px;
+}
+.points__img{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.points__table, 
+.points__thead,
+.points__tr{
+    border: .5px solid #a9abad;
+    text-align: center;
+    td{
+        padding: 15px;
+        border: .5px solid #a9abad;
+    }
+}
+.points__table{
+    margin: 15px 0;    
+    border-collapse: collapse;
+    
+}
+.points__filter-input{
+    padding: 5px 10px;
+    border: .5px solid rgb(187, 183, 183);
+    border-radius: 5px;
+}
+
+.points__btn-update,
+.points__btn-delete{
+    width: 100px;
+    margin: 5px;
+    border-radius: 5px;
+}
+.points__btn-update{
+    border: .5px solid green;
+    background-color: rgb(60, 197, 60);
+}
+.points__btn-delete{
+    border: .5px solid red;
+    background-color: rgb(253, 94, 94);
+}

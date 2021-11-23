@@ -1,0 +1,9 @@
+.points-filter{
+    display: flex;
+}
+
+@media(max-width: 767px){
+    .points-filter{
+        flex-direction: column;
+    }
+}

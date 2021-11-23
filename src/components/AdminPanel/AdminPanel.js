@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, useRouteMatch } from 'react-router-dom';
 import classnamesBind from 'classnames/bind';
 import styles from './adminPanel.module.scss';
 import Main from './Main/Main';
@@ -8,15 +9,18 @@ import Menu from './Menu/Menu';
 
 const AdminPanel = () => {
     const classnames = classnamesBind.bind(styles);
+    const { path } = useRouteMatch();
     return (
         <div className={classnames('wrap')}>
             <Menu />
             <div className={classnames('content')}>
                 <Header />
-                <div className={classnames('wrap-main-footer')}>
-                    <Main />
-                    <Footer />
+                <div className={classnames('main')}>
+                    <Route path={`${path}/:id`}>
+                        <Main />
+                    </Route>
                 </div>
+                <Footer />
             </div>
         </div>
     );

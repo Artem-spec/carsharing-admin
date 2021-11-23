@@ -7,6 +7,7 @@ import MenuItems from './MenuItems/MenuItems';
 const Menu = () => {
     const classnames = classnamesBind.bind(styles);
     const [burgerActive, setBurgerActive] = useState(false);
+
     return (
         <div className={classnames('menu')}>
             <div className={classnames('menu-logo')}>

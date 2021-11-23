@@ -10,23 +10,24 @@
     width: 100%;
     min-height: 100vh;
     max-height: max-content;
-}
-
-.wrap-main-footer {
-    height: calc(100vh - 68px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-@media (max-width: 767px) {
+.main {
+    height: calc(100vh - 136px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+
+@media (max-width: 1023px) {
     .wrap {
         flex-direction: column;
     }    
     .menu-logo{
         width: 100%;
-    }
-    .wrap-main-footer {
-        height: calc(100vh - 136px);
     }
 }
