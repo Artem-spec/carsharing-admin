@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/carsharing-admin/static/css/main.427fc3ac.chunk.css",
+    "main.css": "/carsharing-admin/static/css/main.4754a8c4.chunk.css",
     "main.js": "/carsharing-admin/static/js/main.e6736dec.chunk.js",
     "main.js.map": "/carsharing-admin/static/js/main.e6736dec.chunk.js.map",
     "runtime-main.js": "/carsharing-admin/static/js/runtime-main.8d82a9e2.js",
@@ -8,14 +8,14 @@
     "static/js/2.510d003d.chunk.js": "/carsharing-admin/static/js/2.510d003d.chunk.js",
     "static/js/2.510d003d.chunk.js.map": "/carsharing-admin/static/js/2.510d003d.chunk.js.map",
     "index.html": "/carsharing-admin/index.html",
-    "static/css/main.427fc3ac.chunk.css.map": "/carsharing-admin/static/css/main.427fc3ac.chunk.css.map",
+    "static/css/main.4754a8c4.chunk.css.map": "/carsharing-admin/static/css/main.4754a8c4.chunk.css.map",
     "static/js/2.510d003d.chunk.js.LICENSE.txt": "/carsharing-admin/static/js/2.510d003d.chunk.js.LICENSE.txt",
     "static/media/index.css": "/carsharing-admin/static/media/helvetica_regular.bc3b5d25.woff2"
   },
   "entrypoints": [
     "static/js/runtime-main.8d82a9e2.js",
     "static/js/2.510d003d.chunk.js",
-    "static/css/main.427fc3ac.chunk.css",
+    "static/css/main.4754a8c4.chunk.css",
     "static/js/main.e6736dec.chunk.js"
   ]
 }
