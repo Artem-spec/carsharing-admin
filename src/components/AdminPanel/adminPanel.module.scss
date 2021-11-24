@@ -7,7 +7,7 @@
     flex-wrap: nowrap;
 }
 .content {
-    width: 100%;
+    width: calc(100% - 285px) ;
     min-height: 100vh;
     max-height: max-content;
     display: flex;
@@ -24,6 +24,9 @@
 }
 
 @media (max-width: 1023px) {
+    .content{
+        width: 100%;
+    }
     .wrap {
         flex-direction: column;
     }    
