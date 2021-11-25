@@ -38,7 +38,7 @@ const OrderCard = (props) => {
                         </b>
                         {order.cityId && (
                             <>
-                                в
+                                {` в`}
                                 <b
                                     className={classnames(
                                         'order-card__strong-text'
