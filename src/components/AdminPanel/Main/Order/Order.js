@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classnamesBind from 'classnames/bind';
 import styles from './order.module.scss';
 import Pagination from '../Pagination/Pagination';
 import OrderCard from './OrderCard/OrderCard';
 import OrderFilters from './OrderFilters/OrderFilters';
-import Loading from '../../../Loading/Loading';
 
 const Order = () => {
     const classnames = classnamesBind.bind(styles);
@@ -13,6 +12,7 @@ const Order = () => {
         filterCity: '',
         filterStatus: '',
     });
+    useEffect(() => {}, [filter]);
     return (
         <div className={classnames('order')}>
             <h3 className={classnames('order__heading')}>Заказы</h3>
@@ -21,37 +21,30 @@ const Order = () => {
                 <div className={classnames('order__content-filter')}>
                     <OrderFilters filter={filter} setFilter={setFilter} />
                 </div>
-                {(!filter.filterCity || !filter.filterStatus) && <Loading />}
-                {(filter.filterCity || filter.filterStatus) && (
-                    <>
-                        {Boolean(pageItems.length) && (
-                            <table
-                                className={classnames('order__content_items')}
-                            >
-                                {pageItems.map((item, index) => (
-                                    <tbody key={index}>
-                                        <tr
-                                            className={classnames(
-                                                'order__content_item'
-                                            )}
-                                        >
-                                            <td>
-                                                <OrderCard order={item} />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                ))}
-                            </table>
-                        )}
-                        <Pagination
-                            path="order"
-                            limit={5}
-                            pageItems={pageItems}
-                            setPageItems={setPageItems}
-                            filter={filter}
-                        />
-                    </>
+                {!!pageItems.length && (
+                    <table className={classnames('order__content_items')}>
+                        {pageItems.map((item, index) => (
+                            <tbody key={index}>
+                                <tr
+                                    className={classnames(
+                                        'order__content_item'
+                                    )}
+                                >
+                                    <td>
+                                        <OrderCard order={item} />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        ))}
+                    </table>
                 )}
+                <Pagination
+                    path="order"
+                    limit={5}
+                    pageItems={pageItems}
+                    setPageItems={setPageItems}
+                    filter={filter}
+                />
             </div>
         </div>
     );

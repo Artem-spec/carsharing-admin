@@ -1,20 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link, useRouteMatch } from 'react-router-dom';
 import classnamesBind from 'classnames/bind';
 import styles from './menuItems.module.scss';
 import menuItems from './utils/menuItems';
 
-const MenuItems = (props) => {
-    const { active } = props;
+const MenuItems = () => {
     const classnames = classnamesBind.bind(styles);
     const { path } = useRouteMatch();
     return (
-        <nav
-            className={classnames('menu', {
-                active: active,
-            })}
-        >
+        <nav className={classnames('menu')}>
             <ul className={classnames('menu-list')}>
                 {menuItems.map((item, index) => (
                     <Link
@@ -28,8 +22,5 @@ const MenuItems = (props) => {
             </ul>
         </nav>
     );
-};
-MenuItems.propTypes = {
-    active: PropTypes.bool,
 };
 export default MenuItems;

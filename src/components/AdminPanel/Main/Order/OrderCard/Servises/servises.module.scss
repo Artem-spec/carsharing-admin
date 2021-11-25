@@ -6,10 +6,13 @@
     opacity: .6;
     font-style: normal;
     font-weight: normal;
-    font-size: 10px;
+    font-size: 15px;
     line-height: 12px;
     letter-spacing: -0.175439px;
     color: #999999;
+}
+.servises-checkbox:not(:last-child){
+    margin-bottom: 10px;
 }
 .servises-active{
     opacity: 1;

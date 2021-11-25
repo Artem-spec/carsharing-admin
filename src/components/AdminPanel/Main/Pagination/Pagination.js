@@ -88,7 +88,7 @@ const Pagination = (props) => {
             {!load && (
                 <>
                     {!page.countPage && <NoData />}
-                    {Boolean(page.countPage) && (
+                    {!!page.countPage && (
                         <nav
                             className={classnames('pagination', {
                                 'pagination-visible': !page.countPage,

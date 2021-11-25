@@ -17,6 +17,8 @@ const Main = () => {
             return <City />;
         case `points`:
             return <Points />;
+        default:
+            return;
     }
 };
 export default Main;

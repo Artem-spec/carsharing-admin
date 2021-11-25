@@ -22,15 +22,6 @@ const OrderFilters = (props) => {
             const resultStatus = await getDataFilter('/orderStatus');
             setCity(resultCity);
             setOrderStatus(resultStatus);
-            setCurrentOptions({
-                ...currentOptions,
-                city: resultCity[0].id,
-                status: resultStatus[0].id,
-            });
-            setFilter({
-                filterCity: `cityId=${resultCity[0].id}`,
-                filterStatus: `orderStatusId=${resultStatus[0].id}`,
-            });
         };
         getData();
     }, []);
@@ -38,10 +29,7 @@ const OrderFilters = (props) => {
     const handleClickOption = (e, key) => {
         switch (key) {
             case 'cityId':
-                if (
-                    currentOptions.city &&
-                    currentOptions.city !== e.target.value
-                ) {
+                if (currentOptions.city !== e.target.value) {
                     setFilter({
                         ...filter,
                         filterCity: `cityId=${e.target.value}`,
@@ -53,17 +41,14 @@ const OrderFilters = (props) => {
                 }
                 break;
             case 'orderStatusId':
-                if (
-                    currentOptions.status &&
-                    currentOptions.status !== e.target.value
-                ) {
-                    setFilter({
-                        ...filter,
-                        filterStatus: `orderStatusId=${e.target.value}`,
-                    });
+                if (currentOptions.status !== e.target.value) {
                     setCurrentOptions({
                         ...currentOptions,
                         status: e.target.value,
+                    });
+                    setFilter({
+                        ...filter,
+                        filterStatus: `orderStatusId=${e.target.value}`,
                     });
                 }
                 break;

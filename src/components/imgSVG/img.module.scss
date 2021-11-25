@@ -6,8 +6,16 @@
 .burger-active{
     fill: #039F67;
 }
+.close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 40px;
+    left: 24px;
+    cursor: pointer;
+}
 
-@media (max-width: 1023px) {
+@media (max-width: 1244px) {
     .burger {
         display: block;
     }

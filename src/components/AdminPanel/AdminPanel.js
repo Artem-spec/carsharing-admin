@@ -12,15 +12,21 @@ const AdminPanel = () => {
     const { path } = useRouteMatch();
     return (
         <div className={classnames('wrap')}>
-            <Menu />
             <div className={classnames('content')}>
                 <Header />
-                <div className={classnames('main')}>
-                    <Route path={`${path}/:id`}>
-                        <Main />
-                    </Route>
+                <div className={classnames('content-wrap')}>
+                    <div className={classnames('content-left')}>
+                        <Menu />
+                    </div>
+                    <div className={classnames('content-right')}>
+                        <div className={classnames('main')}>
+                            <Route path={`${path}/:id`}>
+                                <Main />
+                            </Route>
+                        </div>
+                        <Footer />
+                    </div>
                 </div>
-                <Footer />
             </div>
         </div>
     );

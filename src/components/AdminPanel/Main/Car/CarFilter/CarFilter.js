@@ -17,13 +17,6 @@ const CarFilter = (props) => {
         const getFilter = async () => {
             const resultCategory = await getDataFilter('/category');
             setCategory(resultCategory);
-            setCurrentOptions({
-                ...currentOptions,
-                category: resultCategory[0].id,
-            });
-            setFilter({
-                filterCategory: `categoryId=${resultCategory[0].id}`,
-            });
         };
         getFilter();
     }, []);
@@ -31,10 +24,7 @@ const CarFilter = (props) => {
     const handleClickOprion = (e, key) => {
         switch (key) {
             case 'categoryId':
-                if (
-                    currentOptions.category &&
-                    currentOptions.category !== e.target.value
-                ) {
+                if (currentOptions.category !== e.target.value) {
                     setFilter({
                         ...filter,
                         filterCategory: `categoryId=${e.target.value}`,

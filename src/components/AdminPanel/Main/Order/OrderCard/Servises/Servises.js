@@ -30,7 +30,7 @@ const Servises = (props) => {
     }, []);
     return (
         <div className={classnames('servises')}>
-            <div className="form-check">
+            <div className={classnames('form-check', 'servises-checkbox')}>
                 <input
                     className="form-check-input"
                     type="checkbox"
@@ -42,7 +42,7 @@ const Servises = (props) => {
                     Полный бак
                 </label>
             </div>
-            <div className="form-check">
+            <div className={classnames('form-check', 'servises-checkbox')}>
                 <input
                     className="form-check-input"
                     type="checkbox"
@@ -54,7 +54,7 @@ const Servises = (props) => {
                     Детское кресло
                 </label>
             </div>
-            <div className="form-check">
+            <div className={classnames('form-check', 'servises-checkbox')}>
                 <input
                     className="form-check-input"
                     type="checkbox"

@@ -24,6 +24,7 @@ const SelectFilter = (props) => {
                     id={id}
                     onClick={(e) => handleClick(e, id)}
                 >
+                    <option value="">Выберите значение</option>
                     {values.map((status) => (
                         <option key={status.id} value={status.id}>
                             {status.name}

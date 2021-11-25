@@ -17,48 +17,52 @@ const Points = () => {
                 <div className={classnames('points__filter')}>
                     <PointsFilter filter={filter} setFilter={setFilter} />
                 </div>
-                {Boolean(pageItems.length) && (
-                    <table className={classnames('points__table')}>
-                        <thead className={classnames('points__thead')}>
-                            <tr className={classnames('points__tr')}>
-                                <td>Город</td>
-                                <td>Адрес</td>
-                                <td>Описание</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                        </thead>
-                        <tbody className={classnames('points__tbody')}>
-                            {pageItems.map((item) => (
-                                <tr
-                                    key={item.id}
-                                    className={classnames('points__tr')}
-                                >
-                                    <td>{item.cityId.name}</td>
-                                    <td>{item.address}</td>
-                                    <td>{item.name}</td>
-                                    <td>
-                                        {/* пока не придумал обработку, как удобнее оставил так. 
+                {!!pageItems.length && (
+                    <div className={classnames('points__table-wrap')}>
+                        <table className={classnames('points__table')}>
+                            <thead className={classnames('points__thead')}>
+                                <tr className={classnames('points__tr')}>
+                                    <th>Город</th>
+                                    <th>Адрес</th>
+                                    <th>Описание</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody className={classnames('points__tbody')}>
+                                {pageItems.map((item) => (
+                                    <tr
+                                        key={item.id}
+                                        className={classnames('points__tr')}
+                                    >
+                                        <th>{item.cityId.name}</th>
+                                        <td>{item.address}</td>
+                                        <td style={{ width: '200px' }}>
+                                            {item.name}
+                                        </td>
+                                        <td>
+                                            {/* пока не придумал обработку, как удобнее оставил так. 
                                                 Скорее всего это всё в отдельный компонент */}
 
-                                        <button
-                                            className={classnames(
-                                                'points__btn-update'
-                                            )}
-                                        >
-                                            Изменить
-                                        </button>
-                                        <button
-                                            className={classnames(
-                                                'points__btn-delete'
-                                            )}
-                                        >
-                                            Удалить
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                            <button
+                                                className={classnames(
+                                                    'points__btn-update'
+                                                )}
+                                            >
+                                                Изменить
+                                            </button>
+                                            <button
+                                                className={classnames(
+                                                    'points__btn-delete'
+                                                )}
+                                            >
+                                                Удалить
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
                 <Pagination
                     path="point"

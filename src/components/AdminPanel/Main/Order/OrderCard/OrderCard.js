@@ -27,7 +27,7 @@ const OrderCard = (props) => {
                                               ')',
                                       }
                             }
-                        ></div>
+                        />
                     )}
                 </div>
 
@@ -38,14 +38,13 @@ const OrderCard = (props) => {
                         </b>
                         {order.cityId && (
                             <>
-                                {' '}
-                                в{' '}
+                                в
                                 <b
                                     className={classnames(
                                         'order-card__strong-text'
                                     )}
                                 >
-                                    {order.cityId.name}
+                                    {` ${order.cityId.name}`}
                                 </b>
                             </>
                         )}
@@ -57,13 +56,13 @@ const OrderCard = (props) => {
                     <span className={classnames('order-card__text')}>
                         {order.color && (
                             <>
-                                Цвет:{' '}
+                                Цвет:
                                 <b
                                     className={classnames(
                                         'order-card__strong-text'
                                     )}
                                 >
-                                    {order.color}
+                                    {` ${order.color}`}
                                 </b>
                             </>
                         )}
@@ -73,7 +72,7 @@ const OrderCard = (props) => {
             <div className={classnames('order-card__right-content')}>
                 <Servises order={order} />
                 <span className={classnames('order-card__price')}>
-                    {order.price}
+                    {order.price} &#8381;
                 </span>
                 <button className={classnames('order-car__btn-update')}>
                     Изменить

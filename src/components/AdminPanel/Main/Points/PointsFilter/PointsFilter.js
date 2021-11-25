@@ -17,13 +17,6 @@ const PointsFilter = (props) => {
         const getFilter = async () => {
             const resultCity = await getDataFilter('/city');
             setCity(resultCity);
-            setCurrentOptions({
-                ...currentOptions,
-                city: resultCity[0].id,
-            });
-            setFilter({
-                filterCity: `cityId=${resultCity[0].id}`,
-            });
         };
         getFilter();
     }, []);
@@ -31,10 +24,7 @@ const PointsFilter = (props) => {
     const handleClickOprion = (e, key) => {
         switch (key) {
             case 'cityId':
-                if (
-                    currentOptions.city &&
-                    currentOptions.city !== e.target.value
-                ) {
+                if (currentOptions.city !== e.target.value) {
                     setFilter({
                         ...filter,
                         filterCity: `cityId=${e.target.value}`,

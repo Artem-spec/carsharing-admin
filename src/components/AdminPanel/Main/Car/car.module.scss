@@ -1,7 +1,6 @@
 .car{
     margin: 30px 20px;
     width: max-content;
-    overflow-x: scroll;
 }
 .car__heading{
     font-style: normal;
@@ -61,3 +60,50 @@
     border: .5px solid red;
     background-color: rgb(253, 94, 94);
 }
+.car__table-wrap {   
+    max-width: calc(100vw - 285px);
+    max-height: max-content;
+    position: relative;
+  }
+  
+  table {
+        position: relative;
+        border-collapse: collapse;
+  }
+  
+  td, th {
+    padding: 0.25em;
+  }
+  thead th {
+    position: sticky;
+    top: 0;    
+    background-color: white;
+    border: .5px solid #a9abad;
+  }
+  
+  thead th:first-child {
+    left: 0;
+    z-index: 1;
+  }
+  
+  tbody th {
+    position: sticky;
+    left: 0;
+    background-color: white;
+    border: .5px solid #a9abad;
+  }
+@media(max-width: 1023px){    
+    .car{
+        overflow-x: scroll;
+    }
+    .car__table-wrap {
+        overflow: scroll;
+    }
+}
+@media(max-width: 1244px){
+    .car__table-wrap {   
+        min-width: 94vw;
+    }
+}
+
+

@@ -1,7 +1,6 @@
 .city{
     margin: 30px 20px;
     width: max-content;
-    overflow-x: scroll;
 }
 .city__heading-h3{
     font-style: normal;
@@ -65,4 +64,10 @@
 .city__btn-delete{
     border: .5px solid red;
     background-color: rgb(253, 94, 94);
+}
+
+@media(max-width: 1023px){
+    .city{
+        overflow-x: scroll;
+    }
 }
