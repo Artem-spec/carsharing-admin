@@ -29,7 +29,7 @@
     height: calc(100vh - 136px);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between;    
 }
 
 
@@ -49,9 +49,8 @@
     .menu-logo{
         width: 100%;
     }
+    .main{
+        overflow-x: scroll;
+    }
 }
-@media(max-width: 800px){
-    // .main{
-    //     height: calc(100vh - 204px);
-    // }
-}
+
