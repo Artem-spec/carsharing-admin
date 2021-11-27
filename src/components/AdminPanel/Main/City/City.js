@@ -13,47 +13,53 @@ const City = () => {
             <h3 className={classnames('city__heading-h3')}>Города</h3>
             <div className={classnames('city__content')}>
                 {pageItems && (
-                    <table className={classnames('city__table')}>
-                        <thead className={classnames('city__thead')}>
-                            <tr className={classnames('city__tr')}>
-                                <td>Город</td>
-                                <td>Дата создания</td>
-                                <td>Дата редактирования</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                        </thead>
-
-                        <tbody className={classnames('city__tbody')}>
-                            {pageItems.map((item) => (
-                                <tr
-                                    key={item.id}
-                                    className={classnames('city__tr')}
-                                >
-                                    <td>{item.name}</td>
-                                    <td>{parseDateToFormat(item.createdAt)}</td>
-                                    <td>{parseDateToFormat(item.updatedAt)}</td>
-                                    <td>
-                                        {/* пока не придумал обработку, как удобнее оставил так. 
-                                                Скорее всего это всё в отдельный компонент */}
-                                        <button
-                                            className={classnames(
-                                                'city__btn-update'
-                                            )}
-                                        >
-                                            Изменить
-                                        </button>
-                                        <button
-                                            className={classnames(
-                                                'city__btn-delete'
-                                            )}
-                                        >
-                                            Удалить
-                                        </button>
-                                    </td>
+                    <div className={classnames('city__table-wrap')}>
+                        <table className={classnames('city__table')}>
+                            <thead className={classnames('city__thead')}>
+                                <tr className={classnames('city__tr')}>
+                                    <th>Город</th>
+                                    <th>Дата создания</th>
+                                    <th>Дата редактирования</th>
+                                    <th>&nbsp;</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+
+                            <tbody className={classnames('city__tbody')}>
+                                {pageItems.map((item) => (
+                                    <tr
+                                        key={item.id}
+                                        className={classnames('city__tr')}
+                                    >
+                                        <th>{item.name}</th>
+                                        <td>
+                                            {parseDateToFormat(item.createdAt)}
+                                        </td>
+                                        <td>
+                                            {parseDateToFormat(item.updatedAt)}
+                                        </td>
+                                        <td>
+                                            {/* пока не придумал обработку, как удобнее оставил так. 
+                                                Скорее всего это всё в отдельный компонент */}
+                                            <button
+                                                className={classnames(
+                                                    'city__btn-update'
+                                                )}
+                                            >
+                                                Изменить
+                                            </button>
+                                            <button
+                                                className={classnames(
+                                                    'city__btn-delete'
+                                                )}
+                                            >
+                                                Удалить
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
                 <Pagination
                     path="city"

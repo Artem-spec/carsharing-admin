@@ -39,7 +39,9 @@ const Header = () => {
                         <span className={classnames('header-user-name')}>
                             Admin
                         </span>
-                        <Arrow />
+                        <span className={classnames('header-user-arrow')}>
+                            <Arrow />
+                        </span>
                     </div>
                 </div>
             </div>

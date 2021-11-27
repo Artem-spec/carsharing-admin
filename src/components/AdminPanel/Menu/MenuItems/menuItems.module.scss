@@ -1,4 +1,4 @@
-@import '../../../../styles/global.scss';
+@import "../../../../styles/global.scss";
 
 .menu {
     position: relative;
@@ -29,17 +29,3 @@
 .active {
     display: block !important;
 }
-// @media (max-width: 1023px) {
-//     .menu {
-//         width: 100%;
-//         display: none;
-//         position: absolute;
-//         background-color: white;
-//     }
-//     .menu-item {
-//         width: 100%;
-//     }
-// }
-// @media (max-width: 767px) {
-   
-// }
