@@ -17,11 +17,11 @@ export const changeAuthorization = (login, pass, setError, history) => {
                         dispatch({
                             type: AUTHORIZATION,
                             payload: {
-                                auth_success: res.data.refresh_token,
+                                auth_success: res.data.access_token,
                                 auth_error: false,
                             },
                         });
-                        setToken(res.data.refresh_token);
+                        setToken(res.data.access_token);
                         history.push('/panel');
                     })
                     .catch(() => setError(true));

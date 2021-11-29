@@ -53,7 +53,7 @@ const Burger = (props) => {
                 <path d="M4,6.75l16,0c0.414,0 0.75,-0.336 0.75,-0.75c0,-0.414 -0.336,-0.75 -0.75,-0.75l-16,0c-0.414,0 -0.75,0.336 -0.75,0.75c0,0.414 0.336,0.75 0.75,0.75Z" />
                 <path d="M4,12.75l16,0c0.414,0 0.75,-0.336 0.75,-0.75c0,-0.414 -0.336,-0.75 -0.75,-0.75l-16,0c-0.414,0 -0.75,0.336 -0.75,0.75c0,0.414 0.336,0.75 0.75,0.75Z" />
                 <path d="M4,18.75l16,0c0.414,0 0.75,-0.336 0.75,-0.75c0,-0.414 -0.336,-0.75 -0.75,-0.75l-16,0c-0.414,0 -0.75,0.336 -0.75,0.75c0,0.414 0.336,0.75 0.75,0.75Z" />
-            </g>
+            </g>{' '}
         </svg>
     );
 };
@@ -81,4 +81,27 @@ Logo.propTypes = {
     height: PropTypes.number,
 };
 
-export { Search, Alert, Arrow, Burger, Logo };
+const Close = (props) => {
+    const { setActive } = props;
+    return (
+        <svg
+            viewBox="0 0 28 28"
+            className={classnames('close')}
+            onClick={() => {
+                setActive(false);
+            }}
+        >
+            <g>
+                <path
+                    fill="#030104"
+                    d="M0,24l4,4l10-10l10,10l4-4L18,14L28,4l-4-4L14,10L4,0L0,4l10,10L0,24z"
+                />
+            </g>
+        </svg>
+    );
+};
+Close.propTypes = {
+    setActive: PropTypes.func,
+};
+
+export { Search, Alert, Arrow, Burger, Logo, Close };

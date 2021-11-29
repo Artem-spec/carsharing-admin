@@ -3,11 +3,19 @@
     position: absolute;
     left: 15px;
 }
-.burger-active{
-    fill: #039F67;
+.burger-active {
+    fill: #039f67;
+}
+.close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 25px;
+    left: 15px;
+    cursor: pointer;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1244px) {
     .burger {
         display: block;
     }

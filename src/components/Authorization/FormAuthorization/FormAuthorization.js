@@ -8,6 +8,7 @@ import { useHistory } from 'react-router';
 const FormAuthorization = () => {
     const classnames = classnamesBind.bind(styles);
     const dispatch = useDispatch();
+    // Оставил чтобы не вбивать снова при выполнении следующего задания
     // const [login, setLogin] = useState('intern');
     // const [pass, setPass] = useState('intern-S!');
     const [login, setLogin] = useState('');
