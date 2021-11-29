@@ -1,0 +1,9 @@
+.order-filter{
+    display: flex;
+}
+
+@media(max-width: 767px){
+    .order-filter{
+        flex-direction: column;
+    }
+}

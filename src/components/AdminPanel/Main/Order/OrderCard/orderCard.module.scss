@@ -1,0 +1,104 @@
+.order-card{
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.order-card__main-data{
+    display: flex;    
+}
+.order-card__wrap-img{
+    width: 200px;
+    height: 100px;
+    margin-right: 15px;
+}
+.order-card__img{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+.order-card__data{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -0.408571px;
+    color: #889098;
+    .order-card__strong-text{
+        color: #121212;
+    }
+}
+
+.order-card__price{
+    width: 150px;
+    margin: auto 0;
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: -0.754286px;
+    color: #121212;
+}
+
+.order-car__btn-update{    
+    width: 70px;
+    height: 24px;
+    margin: auto 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 13px;
+    letter-spacing: -0.345714px;
+    color: #5A6169 ;
+    border: 0.5px solid #BECAD6;
+    border-radius: 4px;
+}
+.order-car__btn-update:hover{
+    background-color: #b4bac0;
+    color: black;
+    border: 0.5px solid rgb(24, 23, 23);
+}
+.order-card__right-content{
+    display: flex;
+}
+@media(max-width: 1439px){
+    .order-card__data{
+        width: 190px;  
+    }
+}
+@media(max-width: 767px){
+    .order-card{
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    .order-card__wrap-img{
+        margin-bottom: 15px;
+    }
+}
+@media(max-width:499px){
+    .order-card{
+        flex-direction: column;
+        justify-content: initial;
+        align-content: initial;
+        align-items: initial;
+    }
+    .order-card__price{
+        margin: 10px 0;
+        text-align: left;
+    }
+    .order-card__main-data{
+        flex-direction: column;   
+    }
+    .order-card__right-content{
+        margin-top: 15px;
+        flex-direction: column;   
+    }
+}
+
