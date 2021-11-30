@@ -32,9 +32,7 @@ const SelectForm = (props) => {
 
     return (
         values && (
-            <>  <label className={classnames('select-form__label')} htmlFor={id} >
-                {textLabel}
-            </label>
+            <>
                 <label
                     className={classnames('select-form__label')}
                     htmlFor={id}
