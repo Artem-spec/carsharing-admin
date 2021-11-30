@@ -67,7 +67,11 @@
 .header-user-name {
     margin-right: 26px;
 }
-
+@media (max-width: 1244px) {
+    .header-logo {
+        box-shadow: none;
+    }
+}
 @media (max-width: 800px) {
     .header {
         height: 68px;
@@ -83,18 +87,10 @@
     }
 }
 @media (max-width: 534px) {
-    // .header{
-    //     height: 136px;
-    //     flex-direction: column;
-    // }
     .header-logo {
         margin-left: 50px;
         min-width: max-content;
     }
-    // .header-user-wrap {
-    //     max-width: 100%;
-    //     min-width: 100%;
-    // }
     .header-user-name,
     .header-user-arrow {
         display: none;

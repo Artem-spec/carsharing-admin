@@ -3,6 +3,10 @@ import classnamesBind from 'classnames/bind';
 import styles from './car.module.scss';
 import CarFilter from './CarFilter/CarFilter';
 import Pagination from '../Pagination/Pagination';
+import ButtonUpdate from '../Button/ButtonUpdate/ButtonUpdate';
+import ButtonDelete from '../Button/ButtonDelete/ButtonDelete';
+import ButtonCreate from '../Button/ButtonCreate/ButtonCreate';
+import CarModify from './CarModify/CarModify';
 
 const Car = () => {
     const classnames = classnamesBind.bind(styles);
@@ -10,12 +14,23 @@ const Car = () => {
     const [filter, setFilter] = useState({
         filterCategory: '',
     });
+    const [activeCreate, setActiveCreate] = useState(false);
+    const [updateItem, setUpdateItem] = useState(null);
+    const [newPagination, setNewPagination] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+
     return (
         <div className={classnames('car')}>
             <h3 className={classnames('car__heading')}>Список машин</h3>
             <div className={classnames('car__content')}>
                 <div className={classnames('car__filter')}>
                     <CarFilter filter={filter} setFilter={setFilter} />
+                    <div className={classnames('car__create')}>
+                        <ButtonCreate
+                            setActiveCreate={setActiveCreate}
+                            setUpdateItem={setUpdateItem}
+                        />
+                    </div>
                 </div>
                 {!!pageItems.length && (
                     <div className={classnames('car__table-wrap')}>
@@ -34,9 +49,12 @@ const Car = () => {
                                 {pageItems.map((item) => (
                                     <tr
                                         key={item.id}
-                                        className={classnames('car__tr')}
+                                        className={classnames('car__tr', {
+                                            'car__tr-active': selectedItem === item.id
+                                        })}
+                                        onClick={() => setSelectedItem(item.id)}
                                     >
-                                        <th>{item.name}</th>
+                                        <th className={classnames('car__th')}>{item.name}</th>
                                         <td style={{ width: '80px' }}>
                                             {item.number}
                                         </td>
@@ -62,32 +80,30 @@ const Car = () => {
                                                     )
                                                         ? {}
                                                         : {
-                                                              backgroundImage:
-                                                                  'url(' +
-                                                                  item.thumbnail
-                                                                      .path +
-                                                                  ')',
-                                                          }
+                                                            backgroundImage:
+                                                                'url(' +
+                                                                item.thumbnail
+                                                                    .path +
+                                                                ')',
+                                                        }
                                                 }
                                             ></div>
                                         </td>
                                         <td>
-                                            {/* пока не придумал обработку, как удобнее оставил так.
-                                            Скорее всего это всё в отдельный компонент */}
-                                            <button
-                                                className={classnames(
-                                                    'car__btn-update'
-                                                )}
-                                            >
-                                                Изменить
-                                            </button>
-                                            <button
-                                                className={classnames(
-                                                    'car__btn-delete'
-                                                )}
-                                            >
-                                                Удалить
-                                            </button>
+                                            <ButtonUpdate
+                                                setUpdateItem={setUpdateItem}
+                                                setActiveCreate={
+                                                    setActiveCreate
+                                                }
+                                                item={item}
+                                            />
+                                            <ButtonDelete
+                                                path="car"
+                                                item={item}
+                                                setNewPagination={
+                                                    setNewPagination
+                                                }
+                                            />
                                         </td>
                                     </tr>
                                 ))}
@@ -102,8 +118,18 @@ const Car = () => {
                     pageItems={pageItems}
                     setPageItems={setPageItems}
                     filter={filter}
+                    newPagination={newPagination}
+                    setNewPagination={setNewPagination}
                 />
             </div>
+            {activeCreate && (
+                <CarModify
+                    item={updateItem}
+                    active={activeCreate}
+                    setActive={setActiveCreate}
+                    setNewPagination={setNewPagination}
+                />
+            )}
         </div>
     );
 };

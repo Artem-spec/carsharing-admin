@@ -1,0 +1,14 @@
+.input-form__label {
+    margin-bottom: 10px;
+}
+.input-form__input {
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid rgb(196, 192, 192);
+}
+
+.input-form__input-required,
+.input-form__input-error {
+    box-sizing: border-box;
+    border: 2px solid red;
+}

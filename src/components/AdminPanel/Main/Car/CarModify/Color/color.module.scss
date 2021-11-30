@@ -1,0 +1,30 @@
+.color-wrap-plus {
+    display: flex;
+    flex-direction: row;
+}
+.color__plus-add {
+    margin: 0 20px;
+    cursor: pointer;
+}
+.color__cross {
+    width: 10px;
+    height: 10px;
+    margin: 0 35px;
+}
+.color__list {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.color__item {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.color__item:hover {
+    color: rgb(6, 114, 6);
+}
+.color__label {
+    margin-bottom: 10px;
+}

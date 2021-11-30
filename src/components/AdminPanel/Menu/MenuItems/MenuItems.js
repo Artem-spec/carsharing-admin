@@ -23,4 +23,5 @@ const MenuItems = () => {
         </nav>
     );
 };
+
 export default MenuItems;

@@ -1,17 +1,18 @@
-.city{
+.city {
     margin: 30px 20px;
     width: max-content;
     overflow-y: scroll;
 }
-.city__heading{
+.city__heading-h3 {
     font-style: normal;
     font-weight: normal;
     font-size: 29px;
     line-height: 33px;
     letter-spacing: -0.725px;
-    color: #3D5170;
+    color: #3d5170;
+    margin-bottom: 10px;
 }
-.city__content{
+.city__content {
     width: calc(100vw - 320px);
     padding: 10px;
     height: max-content;
@@ -19,98 +20,105 @@
     background-color: white;
 }
 
-.city__wrap-img{
-    width: 200px;
-    height: 100px;
-}
-.city__img{
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-}
-
-.city__table, 
+.city__table,
 .city__thead,
-.city__tr{
-    border: .5px solid #a9abad;
+.city__tr {
+    border: 0.5px solid #a9abad;
     text-align: center;
-    td{
+    td {
         padding: 15px;
-        border: .5px solid #a9abad;
+        border: 0.5px solid #a9abad;
     }
 }
-.city__table{
-    margin: 15px 0;    
+
+.city__tr-active,
+.city__tr:hover {
+    background-color: rgb(125, 247, 125);
+    .city__th {
+        background-color: rgb(125, 247, 125);
+    }
+}
+
+.city__table {
+    margin: 15px 0;
     border-collapse: collapse;
-    
 }
 
 .city__btn-update,
-.city__btn-delete{
+.city__btn-delete {
     width: 100px;
     margin: 5px;
     border-radius: 5px;
 }
-.city__btn-update{
-    border: .5px solid green;
+.city__btn-update {
+    border: 0.5px solid green;
     background-color: rgb(60, 197, 60);
 }
-.city__btn-delete{
-    border: .5px solid red;
+.city__btn-delete {
+    border: 0.5px solid red;
     background-color: rgb(253, 94, 94);
 }
-.city__table-wrap {   
+
+.city__table-wrap {
     max-width: calc(100vw - 285px);
     max-height: max-content;
     position: relative;
-  }
-  
-  table {
-        position: relative;
-        border-collapse: collapse;
-  }
-  
-  td, th {
+}
+
+table {
+    position: relative;
+    border-collapse: collapse;
+}
+
+td,
+th {
     padding: 0.25em;
-  }
-  thead th {
+}
+thead th {
     position: sticky;
-    top: 0;    
+    top: 0;
     background-color: white;
-    border: .5px solid #a9abad;
-  }
-  
-  thead th:first-child {
+    border: 0.5px solid #a9abad;
+}
+
+thead th:first-child {
     left: 0;
     z-index: 1;
-  }
-  
-  tbody th {
+}
+
+tbody th {
     position: sticky;
     left: 0;
     background-color: white;
-    border: .5px solid #a9abad;
-  }
-@media(max-width: 1023px){    
-    .city-content{
+    border: 0.5px solid #a9abad;
+}
+.city__create {
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+@media (max-width: 1023px) {
+    .city-content {
         overflow-x: scroll;
     }
     .city__table-wrap {
         overflow: scroll;
     }
 }
-@media(max-width: 1244px){
-    .city{
+@media (max-width: 1244px) {
+    .city {
         margin: 30px 0;
     }
-    .city__table-wrap {   
+    .city__table-wrap {
         min-width: 94vw;
         margin: 0 auto;
     }
-    .city__content{
+    .city__content {
         width: 100vw;
         padding: 10px 0;
+    }
+    .city__create {
+        width: 94vw;
     }
 }

@@ -8,7 +8,14 @@ import Loading from '../../../Loading/Loading';
 import NoData from '../../NoData/NoData';
 
 const Pagination = (props) => {
-    const { path, limit, setPageItems, filter } = props;
+    const {
+        path,
+        limit,
+        setPageItems,
+        filter,
+        newPagination,
+        setNewPagination,
+    } = props;
     const { auth } = useSelector((state) => state);
     const classnames = classnamesBind.bind(styles);
 
@@ -22,26 +29,15 @@ const Pagination = (props) => {
     const [load, setLoad] = useState(false);
 
     useEffect(() => {
-        const getData = async () => {
-            setLoad(true);
-            const filterRequest = getFilterRequest();
-            const resultData = await getDataList(
-                auth.auth_success,
-                path,
-                page.page,
-                page.limit,
-                filterRequest
-            );
-            setPageItems(resultData.data);
-            setPage({
-                ...page,
-                countItems: resultData.count,
-                countPage: Math.ceil(resultData.count / page.limit),
-            });
-            setLoad(false);
-        };
         getData();
     }, [filter]);
+
+    useEffect(() => {
+        if (newPagination) {
+            getData(page.pageClick);
+            setNewPagination(false);
+        }
+    }, [newPagination]);
 
     const handleClickPrev = () => {
         if (page.page > 0) {
@@ -66,6 +62,10 @@ const Pagination = (props) => {
                 page.limit,
                 filterRequest
             );
+            setPage({
+                ...page,
+                pageClick: pageValue
+            })
             setPageItems(resultData.data);
             setLoad(false);
         };
@@ -80,6 +80,26 @@ const Pagination = (props) => {
             }
         }
         return resultFilter;
+    };
+
+    const getData = async (pageActive = page.page) => {
+        setLoad(true);
+        const filterRequest = getFilterRequest();
+        const resultData = await getDataList(
+            auth.auth_success,
+            path,
+            pageActive,
+            page.limit,
+            filterRequest
+        );
+        setPageItems(resultData.data);
+        setPage({
+            ...page,
+            pageClick: pageActive,
+            countItems: resultData.count,
+            countPage: Math.ceil(resultData.count / page.limit),
+        });
+        setLoad(false);
     };
 
     return (
@@ -200,5 +220,7 @@ Pagination.propTypes = {
     limit: PropTypes.number,
     setPageItems: PropTypes.func,
     filter: PropTypes.object,
+    newPagination: PropTypes.bool,
+    setNewPagination: PropTypes.func,
 };
 export default Pagination;

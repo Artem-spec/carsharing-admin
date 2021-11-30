@@ -1,28 +1,29 @@
-.order{
+.order {
     margin: 28px 30px;
     overflow-y: scroll;
 }
-.order__content{
+.order__content {
     padding: 15px;
     background-color: white;
     border-radius: 15px;
 }
-.order__content-filter{   
+.order__content-filter {
     display: flex;
 }
-.order__content_items{
+.order__content_items {
     width: 100%;
     margin-top: 15px;
     border-collapse: collapse;
-    .order__content_item{
-        border: 1px solid #E0E2E8;
+    .order__content_item {
+        border: 1px solid #e0e2e8;
     }
 }
-.order__heading{
+.order__heading {
     font-style: normal;
     font-weight: normal;
     font-size: 29px;
     line-height: 33px;
     letter-spacing: -0.725px;
-    color: #3D5170;
+    color: #3d5170;
+    margin-bottom: 10px;
 }

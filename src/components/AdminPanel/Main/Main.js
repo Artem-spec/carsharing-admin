@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import NotFound from '../../NotFound/NotFound';
 import Car from './Car/Car';
 import City from './City/City';
 import Order from './Order/Order';
@@ -18,7 +19,7 @@ const Main = () => {
         case `points`:
             return <Points />;
         default:
-            return;
+            return <NotFound error="404" message="Что-то пошло не так" />;
     }
 };
 export default Main;
