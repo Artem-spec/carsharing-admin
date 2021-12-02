@@ -14,25 +14,20 @@ const getDataList = (path, page, limit, filter) => {
     });
 };
 
-const insertItem = (values, path, setNewPagination, setActive) => {
+const insertItem = (values, path) => {
   return axiosConfig.post(`/${path}`, values).then((response) => {
-    setNewPagination(true);
-    setActive(false);
     return response.data;
   });
 };
 
-const updateItem = (id, values, path, setNewPagination, setActive) => {
+const updateItem = (id, values, path) => {
   return axiosConfig.put(`/${path}/${id}`, values).then((response) => {
-    setNewPagination(true);
-    setActive(false);
     return response.data;
   });
 };
 
-const deleteData = (path, id, setNewPagination) => {
+const deleteData = (path, id) => {
   return axiosConfig.delete(`/${path}/${id}`).then((response) => {
-    setNewPagination(true);
     return response.data;
   });
 };

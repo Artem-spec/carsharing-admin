@@ -54,12 +54,14 @@ const PointsModify = (props) => {
     }
   }, [item]);
 
-  const handleClickBtn = (values) => {
+  const handleClickBtn = async (values) => {
     if (item) {
-      updateItem(item.id, values, 'point', setNewPagination, setActive);
+      await updateItem(item.id, values, 'point');
     } else {
-      insertItem(values, 'point', setNewPagination, setActive);
+      await insertItem(values, 'point');
     }
+    setNewPagination(true);
+    setActive(false);
   };
   return (
     <div

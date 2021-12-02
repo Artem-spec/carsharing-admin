@@ -30,12 +30,14 @@ const CityModify = (props) => {
     }
   }, [item]);
 
-  const handleClickBtn = (values) => {
+  const handleClickBtn = async (values) => {
     if (item) {
-      updateItem(item.id, values, 'city', setNewPagination, setActive);
+      await updateItem(item.id, values, 'city', setNewPagination, setActive);
     } else {
-      insertItem(values, 'city', setNewPagination, setActive);
+      await insertItem(values, 'city', setNewPagination, setActive);
     }
+    setNewPagination(true);
+    setActive(false);
   };
   return (
     <div

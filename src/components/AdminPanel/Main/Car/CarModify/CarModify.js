@@ -74,16 +74,18 @@ const CarModify = (props) => {
     }
   }, [item]);
 
-  const handleClickBtn = (values) => {
+  const handleClickBtn = async (values) => {
     const bodyRequest = {
       ...values,
       thumbnail: thumbnail ? thumbnail : item.thumbnail,
     };
     if (item) {
-      updateItem(item.id, bodyRequest, 'car', setNewPagination, setActive);
+      await updateItem(item.id, bodyRequest, 'car');
     } else {
-      insertItem(bodyRequest, 'car', setNewPagination, setActive);
+      await insertItem(bodyRequest, 'car');
     }
+    setNewPagination(true);
+    setActive(false);
   };
 
   const ChangeFile = async (item) => {

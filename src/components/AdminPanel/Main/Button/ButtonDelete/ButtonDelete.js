@@ -7,8 +7,9 @@ import { deleteData } from '../../../../../utils/getDataAPI';
 const ButtonDelete = (props) => {
   const { path, item, setNewPagination } = props;
   const classnames = classnamesBind.bind(styles);
-  const handleClickBtnDelete = () => {
-    deleteData(path, item.id, setNewPagination);
+  const handleClickBtnDelete = async () => {
+    await deleteData(path, item.id);
+    setNewPagination(true);
   };
   return (
     <>
