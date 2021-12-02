@@ -32,9 +32,9 @@ const CityModify = (props) => {
 
   const handleClickBtn = async (values) => {
     if (item) {
-      await updateItem(item.id, values, 'city', setNewPagination, setActive);
+      await updateItem(item.id, values, 'city');
     } else {
-      await insertItem(values, 'city', setNewPagination, setActive);
+      await insertItem(values, 'city');
     }
     setNewPagination(true);
     setActive(false);
