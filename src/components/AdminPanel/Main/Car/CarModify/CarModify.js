@@ -1,299 +1,234 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { ErrorMessage, Form, Formik } from 'formik';
+import * as yup from 'yup';
 import classnamesBind from 'classnames/bind';
 import styles from './carModify.module.scss';
-import axiosConfig from '../../../../../utils/axiosConfig';
 import HeaderModifyWindow from '../../HeaderModifyWindow/HeaderModifyWindow';
-import InputForm from '../../InputForm/InputForm';
-import SelectForm from '../../SelectForm/SelectForm';
-import { getDataFilter } from '../../../../../utils/getDataAPI';
-import Color from './Color/Color';
-import InputCarImage from './InputCarImage/InputCarImage';
+import { getDataFilter, modifyData } from '../../../../../utils/getDataAPI';
+import InputFormik from '../../InputFormik/InputFormik';
+import SelectFormik from '../../SelectFormik/SelectFormik';
+import InputArrayFormik from '../../InputArrayFormik/InputArrayFormik';
 
-const defStateDataPost = {
-    priceMax: 0,
-    priceMin: 0,
-    name: '',
-    thumbnail: {},
-    description: '',
-    categoryId: {},
-    colors: [],
-    number: '',
-    tank: 0,
+const defStateParams = {
+  priceMax: 0,
+  priceMin: 0,
+  name: '',
+  thumbnail: null,
+  description: '',
+  categoryId: '',
+  colors: [],
+  number: '',
+  tank: 0,
 };
 
 const CarModify = (props) => {
-    const classnames = classnamesBind.bind(styles);
+  const classnames = classnamesBind.bind(styles);
 
-    const { item, active, setActive, setNewPagination } = props;
-    const { auth } = useSelector((state) => state);
-    const [dataPost, setDataPost] = useState(defStateDataPost);
-    const [category, setCategory] = useState(null);
-    const [error, setError] = useState({
-        required: false,
-        price: false,
-        message: '',
-    });
-    const [load, setLoad] = useState(false);
+  const { item, active, setActive, setNewPagination } = props;
+  const { auth } = useSelector((state) => state);
+  const [category, setCategory] = useState(null);
+  const [initialValues, setInitialValues] = useState(defStateParams);
+  const [thumbnail, setThumbnail] = useState(null);
 
-    useEffect(() => {
-        const getCategory = async () => {
-            await getDataFilter('/category').then((res) => setCategory(res));
-        };
-        getCategory();
-    }, []);
+  const validationCar = yup.object().shape({
+    thumbnail: yup.mixed().required('Обязательное поле'),
+    name: yup.string().required('Обязательное поле'),
+    priceMax: yup
+      .number()
+      .positive('Не может быть 0')
+      .integer()
+      .required('Обязательное поле')
+      .moreThan(yup.ref('priceMin'), 'Цена от меньше цены до'),
+    priceMin: yup
+      .number()
+      .positive('Не может быть 0')
+      .integer()
+      .required('Обязательное поле'),
+    categoryId: yup.string().required('Обязательное поле'),
+  });
 
-    useEffect(() => {
-        setLoad(true);
-        if (item) {
-            setDataPost({
-                ...item,
-                thumbnail: {
-                    ...item.thumbnail,
-                },
-            });
-        } else {
-            setDataPost({
-                ...dataPost,
-            });
-        }
-        setLoad(false);
-    }, [item]);
-
-    useEffect(() => {
-        if (
-            !dataPost.priceMax ||
-            !dataPost.priceMin ||
-            !dataPost.name ||
-            !Object.keys(dataPost.thumbnail).length ||
-            (dataPost.categoryId && !Object.keys(dataPost.categoryId).length)
-        ) {
-            setError({
-                required: true,
-                price: false,
-                message: 'Заполните обязательные поля',
-            });
-        } else {
-            if (dataPost.priceMin > dataPost.priceMax) {
-                setError({
-                    required: false,
-                    price: true,
-                    message: 'Цена от больше цены до',
-                });
-            } else {
-                setError({
-                    required: false,
-                    price: false,
-                    message: '',
-                });
-            }
-        }
-    }, [dataPost]);
-
-    const handleClickBtn = () => {
-        if (!error.required && !error.price) {
-            axiosConfig.defaults.headers.common[
-                'Authorization'
-            ] = `Bearer ${auth.auth_success}`;
-            if (!item) {
-                const post = async () => {
-                    await axiosConfig.post('/car', dataPost);
-                    setDataPost(defStateDataPost);
-                    setNewPagination(true);
-                };
-                post();
-            } else {
-                const put = async () => {
-                    await axiosConfig.put(`/car/${item.id}`, dataPost);
-                    setDataPost(defStateDataPost);
-                    setNewPagination(true);
-                };
-                put();
-            }
-            setActive(false);
-        }
+  useEffect(() => {
+    const getCategory = async () => {
+      await getDataFilter('/category').then((res) => setCategory(res));
     };
-    return (
-        <div
-            className={classnames('car-modify', {
-                'car-modify-active': active,
-            })}
-        >
-            {!load && (
-                <div className={classnames('car-modify__content')}>
-                    <HeaderModifyWindow
-                        heading={!item ? 'Создание' : 'Редактирование'}
-                        setActiveWindow={setActive}
-                    />
-                    <div className={classnames('car-modify__input-wrap')}>
-                        <div
-                            className={classnames(
-                                'car-modify__input-wrap-left'
-                            )}
-                        >
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                <InputForm
-                                    id="priceMin"
-                                    type="number"
-                                    value={dataPost.priceMin}
-                                    dataPost={dataPost}
-                                    setDataPost={setDataPost}
-                                    textLabel="Цена от:"
-                                    required={true}
-                                    error={error.price}
-                                />
-                            </div>
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                <InputForm
-                                    id="priceMax"
-                                    type="number"
-                                    value={dataPost.priceMax}
-                                    dataPost={dataPost}
-                                    setDataPost={setDataPost}
-                                    textLabel="Цена до:"
-                                    required={true}
-                                />
-                            </div>
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                <InputForm
-                                    id="name"
-                                    type="text"
-                                    value={dataPost.name}
-                                    dataPost={dataPost}
-                                    setDataPost={setDataPost}
-                                    textLabel="Название:"
-                                    required={true}
-                                />
-                            </div>
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                <InputCarImage
-                                    dataPost={dataPost}
-                                    setDataPost={setDataPost}
-                                    required={true}
-                                />
-                            </div>
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                <InputForm
-                                    id="description"
-                                    type="text"
-                                    value={dataPost.description}
-                                    dataPost={dataPost}
-                                    setDataPost={setDataPost}
-                                    textLabel="Описание:"
-                                />
-                            </div>
-                        </div>
-                        <div
-                            className={classnames(
-                                'car-modify__input-wrap-right'
-                            )}
-                        >
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                {category && (
-                                    <SelectForm
-                                        id="categoryId"
-                                        values={category}
-                                        item={item}
-                                        dataPost={dataPost}
-                                        setDataPost={setDataPost}
-                                        textLabel="Категория:"
-                                        required={true}
-                                    />
-                                )}
-                            </div>
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                <InputForm
-                                    id="number"
-                                    type="text"
-                                    value={dataPost.number}
-                                    dataPost={dataPost}
-                                    setDataPost={setDataPost}
-                                    textLabel="Номер:"
-                                />
-                            </div>
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                <InputForm
-                                    id="tank"
-                                    type="number"
-                                    value={dataPost.tank}
-                                    dataPost={dataPost}
-                                    setDataPost={setDataPost}
-                                    textLabel="Бензин:"
-                                />
-                            </div>
-                            <div
-                                className={classnames(
-                                    'car-modify__group-input'
-                                )}
-                            >
-                                <Color
-                                    dataPost={dataPost}
-                                    setDataPost={setDataPost}
-                                />
-                            </div>
-                        </div>
-                    </div>
+    getCategory();
+  }, []);
 
-                    <span
-                        className={classnames('car-modify__error-msg', {
-                            'car-modify__error': error.required || error.price,
-                        })}
-                    >
-                        {error.message}
-                    </span>
-                    <div className={classnames('car-modify__btn-wrap')}>
-                        <button
-                            className={classnames('car-modify__btn')}
-                            onClick={(e) => {
-                                handleClickBtn(e);
-                            }}
-                            type="submit"
-                        >
-                            Сохранить
-                        </button>
-                    </div>
-                </div>
-            )}
-        </div>
+  useEffect(() => {
+    if (item) {
+      setInitialValues({
+        ...item,
+        thumbnail: {
+          ...item.thumbnail,
+        },
+        categoryId: item.categoryId.id,
+      });
+    } else {
+      setInitialValues({
+        ...initialValues,
+      });
+    }
+  }, [item]);
+
+  const handleClickBtn = (values) => {
+    modifyData(
+      auth.auth_success,
+      item ? item.id : null,
+      {
+        ...values,
+        thumbnail: thumbnail ? thumbnail : item.thumbnail,
+      },
+      'car',
+      setNewPagination
     );
+    setActive(false);
+  };
+
+  const ChangeFile = async (item) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(item);
+    reader.onload = () => {
+      setThumbnail({
+        mimetype: item.type,
+        originalname: item.name,
+        path: reader.result,
+        size: item.size,
+      });
+    };
+  };
+
+  return (
+    <div
+      className={classnames('car-modify', {
+        'car-modify-active': active,
+      })}
+    >
+      <div className={classnames('car-modify__content')}>
+        <HeaderModifyWindow
+          heading={!item ? 'Создание' : 'Редактирование'}
+          setActiveWindow={setActive}
+        />
+
+        <Formik
+          enableReinitialize
+          initialValues={initialValues}
+          validationSchema={validationCar}
+          onSubmit={handleClickBtn}
+        >
+          {({ errors, values, setFieldValue }) => (
+            <Form>
+              <div className={classnames('car-modify__input-wrap')}>
+                <div className={classnames('car-modify__input-wrap-left')}>
+                  <div className={classnames('car-modify__group-input')}>
+                    <InputFormik
+                      id="priceMin"
+                      type="number"
+                      textLabel="Цена от:"
+                      error={errors}
+                    />
+                  </div>
+                  <div className={classnames('car-modify__group-input')}>
+                    <InputFormik
+                      id="priceMax"
+                      type="number"
+                      textLabel="Цена до:"
+                      error={errors}
+                    />
+                  </div>
+                  <div className={classnames('car-modify__group-input')}>
+                    <InputFormik
+                      id="name"
+                      type="text"
+                      textLabel="Название:"
+                      error={errors}
+                    />
+                  </div>
+                  <div className={classnames('car-modify__group-input')}>
+                    <label
+                      htmlFor="thumbnail"
+                      className={classnames('input-form__label')}
+                    >
+                      Картинка:
+                    </label>
+                    <input
+                      name="thumbnail"
+                      type="file"
+                      accept="image/*"
+                      className={`mt-2 form-control ${
+                        errors.thumbnail ? 'is-invalid' : ''
+                      }`}
+                      onChange={(e) => {
+                        setFieldValue('thumbnail', e.target.files[0]);
+                        ChangeFile(e.currentTarget.files[0]);
+                      }}
+                    />
+                    <ErrorMessage
+                      component="div"
+                      name="thumbnail"
+                      className={'invalid-feedback'}
+                    />
+                  </div>
+                  <div className={classnames('car-modify__group-input')}>
+                    <InputFormik
+                      id="description"
+                      type="text"
+                      textLabel="Описание:"
+                      error={errors}
+                    />
+                  </div>
+                </div>
+                <div className={classnames('car-modify__input-wrap-right')}>
+                  <div className={classnames('car-modify__group-input')}>
+                    <SelectFormik
+                      id="categoryId"
+                      values={category}
+                      textLabel="Категория:"
+                      error={errors}
+                    />
+                  </div>
+                  <div className={classnames('car-modify__group-input')}>
+                    <InputFormik
+                      id="number"
+                      type="text"
+                      textLabel="Номер:"
+                      error={errors}
+                    />
+                  </div>
+                  <div className={classnames('car-modify__group-input')}>
+                    <InputFormik
+                      id="tank"
+                      type="number"
+                      textLabel="Бензин:"
+                      error={errors}
+                    />
+                  </div>
+                  <div className={classnames('car-modify__group-input')}>
+                    <InputArrayFormik
+                      id="colors"
+                      values={values}
+                      textLabel="Цвета:"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className={classnames('car-modify__btn-wrap')}>
+                <button className={classnames('car-modify__btn')} type="submit">
+                  Сохранить
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </div>
+  );
 };
 CarModify.propTypes = {
-    item: PropTypes.object,
-    active: PropTypes.bool,
-    setActive: PropTypes.func,
-    setNewPagination: PropTypes.func,
+  item: PropTypes.object,
+  active: PropTypes.bool,
+  setActive: PropTypes.func,
+  setNewPagination: PropTypes.func,
 };
 export default CarModify;

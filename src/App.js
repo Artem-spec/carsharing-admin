@@ -8,32 +8,36 @@ import PrivateRoute from './components/Route/PrivateRoute';
 import PublicRoute from './components/Route/PublicRoute';
 import Authorization from './components/Authorization/Authorization';
 import AdminPanel from './components/AdminPanel/AdminPanel';
+import NotFound from './components/NotFound/NotFound';
 
 const App = () => {
-    const dispatch = useDispatch();
-    const { auth } = useSelector((state) => state);
-    const history = useHistory();
-    useEffect(() => {
-        const token = getToken();
-        if (token) {
-            dispatch(changeAuthorization());
-            history.push('/panel');
-        } else {
-            history.push('/admin');
-        }
-    }, []);
+  const dispatch = useDispatch();
+  const { auth } = useSelector((state) => state);
+  const history = useHistory();
+  useEffect(() => {
+    const token = getToken();
+    if (token) {
+      dispatch(changeAuthorization());
+      history.push('/panel');
+    } else {
+      history.push('/admin');
+    }
+  }, []);
 
-    return (
-        <Router>
-            <Switch>
-                <PublicRoute path="/admin">
-                    <Authorization />
-                </PublicRoute>
-                <PrivateRoute path="/panel" isAuthenticated={auth.auth_error}>
-                    <AdminPanel />
-                </PrivateRoute>
-            </Switch>
-        </Router>
-    );
+  return (
+    <Router>
+      <Switch>
+        <PublicRoute path="/admin">
+          <Authorization />
+        </PublicRoute>
+        <PrivateRoute path="/panel" isAuthenticated={auth.auth_error}>
+          <AdminPanel />
+        </PrivateRoute>
+        <PrivateRoute path="/*" isAuthenticated={auth.auth_error}>
+          <NotFound error="404" message="Что-то пошло не так" />
+        </PrivateRoute>
+      </Switch>
+    </Router>
+  );
 };
 export default App;
