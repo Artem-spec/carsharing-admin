@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { ErrorMessage, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import classnamesBind from 'classnames/bind';
 import styles from './carModify.module.scss';
 import HeaderModifyWindow from '../../HeaderModifyWindow/HeaderModifyWindow';
-import { getDataFilter, modifyData } from '../../../../../utils/getDataAPI';
+import {
+  getDataFilter,
+  insertItem,
+  updateItem,
+} from '../../../../../utils/getDataAPI';
 import InputFormik from '../../InputFormik/InputFormik';
 import SelectFormik from '../../SelectFormik/SelectFormik';
 import InputArrayFormik from '../../InputArrayFormik/InputArrayFormik';
@@ -27,7 +30,6 @@ const CarModify = (props) => {
   const classnames = classnamesBind.bind(styles);
 
   const { item, active, setActive, setNewPagination } = props;
-  const { auth } = useSelector((state) => state);
   const [category, setCategory] = useState(null);
   const [initialValues, setInitialValues] = useState(defStateParams);
   const [thumbnail, setThumbnail] = useState(null);
@@ -73,17 +75,15 @@ const CarModify = (props) => {
   }, [item]);
 
   const handleClickBtn = (values) => {
-    modifyData(
-      auth.auth_success,
-      item ? item.id : null,
-      {
-        ...values,
-        thumbnail: thumbnail ? thumbnail : item.thumbnail,
-      },
-      'car',
-      setNewPagination
-    );
-    setActive(false);
+    const bodyRequest = {
+      ...values,
+      thumbnail: thumbnail ? thumbnail : item.thumbnail,
+    };
+    if (item) {
+      updateItem(item.id, bodyRequest, 'car', setNewPagination, setActive);
+    } else {
+      insertItem(bodyRequest, 'car', setNewPagination, setActive);
+    }
   };
 
   const ChangeFile = async (item) => {

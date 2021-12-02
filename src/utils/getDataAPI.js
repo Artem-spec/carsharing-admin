@@ -1,45 +1,40 @@
 import axiosConfig from './axiosConfig';
 
 const getDataFilter = (path) => {
-  return axiosConfig.get(path).then((res) => {
-    return res.data.data;
+  return axiosConfig.get(path).then((response) => {
+    return response.data.data;
   });
 };
 
-const getDataList = (key, path, page, limit, filter) => {
-  axiosConfig.defaults.headers.common['Authorization'] = `Bearer ${key}`;
+const getDataList = (path, page, limit, filter) => {
   return axiosConfig
     .get(`/${path}?page=${page}&limit=${limit}${filter}`)
-    .then((res) => {
-      return res.data;
+    .then((response) => {
+      return response.data;
     });
 };
 
-const modifyData = (auth, id, values, path, setNewPagination) => {
-  axiosConfig.defaults.headers.common['Authorization'] = `Bearer ${auth}`;
-  if (!id) {
-    const post = async () => {
-      await axiosConfig.post(`/${path}`, values);
-      setNewPagination(true);
-    };
-    post();
-  } else {
-    const put = async () => {
-      await axiosConfig.put(`/${path}/${id}`, values);
-      setNewPagination(true);
-    };
-    put();
-  }
+const insertItem = (values, path, setNewPagination, setActive) => {
+  return axiosConfig.post(`/${path}`, values).then((response) => {
+    setNewPagination(true);
+    setActive(false);
+    return response.data;
+  });
 };
 
-const deleteData = (auth, path, id, setNewPagination) => {
-  axiosConfig.defaults.headers.common['Authorization'] = `Bearer ${auth}`;
-  const deleteItem = async () => {
-    await axiosConfig.delete(`/${path}/${id}`).then(() => {
-      setNewPagination(true);
-    });
-  };
-  deleteItem();
+const updateItem = (id, values, path, setNewPagination, setActive) => {
+  return axiosConfig.put(`/${path}/${id}`, values).then((response) => {
+    setNewPagination(true);
+    setActive(false);
+    return response.data;
+  });
 };
 
-export { getDataFilter, getDataList, modifyData, deleteData };
+const deleteData = (path, id, setNewPagination) => {
+  return axiosConfig.delete(`/${path}/${id}`).then((response) => {
+    setNewPagination(true);
+    return response.data;
+  });
+};
+
+export { getDataFilter, getDataList, insertItem, updateItem, deleteData };

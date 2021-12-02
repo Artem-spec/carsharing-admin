@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import classnamesBind from 'classnames/bind';
 import styles from './pointsModify.module.scss';
-import { getDataFilter, modifyData } from '../../../../../utils/getDataAPI';
+import {
+  getDataFilter,
+  insertItem,
+  updateItem,
+} from '../../../../../utils/getDataAPI';
 import HeaderModifyWindow from '../../HeaderModifyWindow/HeaderModifyWindow';
 import InputFormik from '../../InputFormik/InputFormik';
 import SelectFormik from '../../SelectFormik/SelectFormik';
@@ -14,7 +17,6 @@ const PointsModify = (props) => {
   const classnames = classnamesBind.bind(styles);
 
   const { item, active, setActive, setNewPagination } = props;
-  const { auth } = useSelector((state) => state);
   const [initialValues, setInitialValues] = useState({
     name: '',
     cityId: '',
@@ -53,14 +55,11 @@ const PointsModify = (props) => {
   }, [item]);
 
   const handleClickBtn = (values) => {
-    modifyData(
-      auth.auth_success,
-      item ? item.id : null,
-      values,
-      'point',
-      setNewPagination
-    );
-    setActive(false);
+    if (item) {
+      updateItem(item.id, values, 'point', setNewPagination, setActive);
+    } else {
+      insertItem(values, 'point', setNewPagination, setActive);
+    }
   };
   return (
     <div

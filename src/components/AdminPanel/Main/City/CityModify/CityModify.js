@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
@@ -7,13 +6,12 @@ import classnamesBind from 'classnames/bind';
 import styles from './cityModify.module.scss';
 import HeaderModifyWindow from '../../HeaderModifyWindow/HeaderModifyWindow';
 import InputFormik from '../../InputFormik/InputFormik';
-import { modifyData } from '../../../../../utils/getDataAPI';
+import { insertItem, updateItem } from '../../../../../utils/getDataAPI';
 
 const CityModify = (props) => {
   const classnames = classnamesBind.bind(styles);
 
   const { item, active, setActive, setNewPagination } = props;
-  const { auth } = useSelector((state) => state);
   const [initialValues, setInitialValues] = useState({ name: '' });
 
   const validationCity = yup.object().shape({
@@ -33,14 +31,11 @@ const CityModify = (props) => {
   }, [item]);
 
   const handleClickBtn = (values) => {
-    modifyData(
-      auth.auth_success,
-      item ? item.id : null,
-      values,
-      'city',
-      setNewPagination
-    );
-    setActive(false);
+    if (item) {
+      updateItem(item.id, values, 'city', setNewPagination, setActive);
+    } else {
+      insertItem(values, 'city', setNewPagination, setActive);
+    }
   };
   return (
     <div
