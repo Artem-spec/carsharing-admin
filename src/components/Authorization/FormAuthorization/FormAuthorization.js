@@ -8,9 +8,6 @@ import { useHistory } from 'react-router';
 const FormAuthorization = () => {
     const classnames = classnamesBind.bind(styles);
     const dispatch = useDispatch();
-    // Оставил чтобы не вбивать снова при выполнении следующего задания
-    // const [login, setLogin] = useState('intern');
-    // const [pass, setPass] = useState('intern-S!');
     const [login, setLogin] = useState('');
     const [pass, setPass] = useState('');
     const [error, setError] = useState(false);
@@ -43,7 +40,6 @@ const FormAuthorization = () => {
                 id="login"
                 required
                 onChange={(e) => handleChangeInput(e, setLogin)}
-                // defaultValue={login}
             />
             <label className={classnames('form-label')} htmlFor="password">
                 Пароль
@@ -54,7 +50,6 @@ const FormAuthorization = () => {
                 type="password"
                 required
                 onChange={(e) => handleChangeInput(e, setPass)}
-                // defaultValue={pass}
             />
             <p
                 className={classnames('error-msg', {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import classnamesBind from 'classnames/bind';
 import styles from './order.module.scss';
 import Pagination from '../Pagination/Pagination';
@@ -12,7 +12,7 @@ const Order = () => {
         filterCity: '',
         filterStatus: '',
     });
-    useEffect(() => {}, [filter]);
+
     return (
         <div className={classnames('order')}>
             <h3 className={classnames('order__heading')}>Заказы</h3>

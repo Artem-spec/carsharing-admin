@@ -1,0 +1,14 @@
+.header-modify {
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid grey;
+}
+.header-modify__close {
+    width: 20px;
+    height: 20px;
+}

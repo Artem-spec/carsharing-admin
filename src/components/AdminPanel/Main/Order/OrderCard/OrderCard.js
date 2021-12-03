@@ -74,9 +74,6 @@ const OrderCard = (props) => {
                 <span className={classnames('order-card__price')}>
                     {order.price} &#8381;
                 </span>
-                <button className={classnames('order-car__btn-update')}>
-                    Изменить
-                </button>
             </div>
         </div>
     );

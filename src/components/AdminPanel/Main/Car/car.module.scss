@@ -1,29 +1,32 @@
-.car{
+.car {
     margin: 30px 20px;
     width: max-content;
     overflow-y: scroll;
 }
-.car__heading{
+.car__heading {
     font-style: normal;
     font-weight: normal;
     font-size: 29px;
     line-height: 33px;
     letter-spacing: -0.725px;
-    color: #3D5170;
+    color: #3d5170;
+    margin-bottom: 10px;
 }
-.car__content{
-    width: calc(100vw - 320px);
+.car__content {
+    width: calc(100vw - 360px);
     padding: 10px;
     height: max-content;
     border-radius: 15px;
     background-color: white;
 }
-
-.car__wrap-img{
+.car__filter {
+    display: flex;
+}
+.car__wrap-img {
     width: 200px;
     height: 100px;
 }
-.car__img{
+.car__img {
     width: 100%;
     height: 100%;
     background-position: center;
@@ -31,88 +34,100 @@
     background-repeat: no-repeat;
 }
 
-.car__table, 
+.car__table,
 .car__thead,
-.car__tr{
-    border: .5px solid #a9abad;
+.car__tr {
+    border: 0.5px solid #a9abad;
     text-align: center;
-    td{
+    td {
         padding: 15px;
-        border: .5px solid #a9abad;
+        border: 0.5px solid #a9abad;
     }
 }
-.car__table{
-    margin: 15px 0;    
+.car__table {
+    margin: 15px 0;
     border-collapse: collapse;
-    
 }
 
 .car__btn-update,
-.car__btn-delete{
+.car__btn-delete {
     width: 100px;
     margin: 5px;
     border-radius: 5px;
 }
-.car__btn-update{
-    border: .5px solid green;
+.car__btn-update {
+    border: 0.5px solid green;
     background-color: rgb(60, 197, 60);
 }
-.car__btn-delete{
-    border: .5px solid red;
+.car__btn-delete {
+    border: 0.5px solid red;
     background-color: rgb(253, 94, 94);
 }
-.car__table-wrap {   
+.car__table-wrap {
     max-width: calc(100vw - 285px);
     max-height: max-content;
     position: relative;
-  }
-  
-  table {
-        position: relative;
-        border-collapse: collapse;
-  }
-  
-  td, th {
+}
+
+table {
+    position: relative;
+    border-collapse: collapse;
+}
+
+td,
+th {
     padding: 0.25em;
-  }
-  thead th {
+}
+thead th {
     position: sticky;
-    top: 0;    
+    top: 0;
     background-color: white;
-    border: .5px solid #a9abad;
-  }
-  
-  thead th:first-child {
+    border: 0.5px solid #a9abad;
+}
+
+thead th:first-child {
     left: 0;
     z-index: 1;
-  }
-  
-  tbody th {
+}
+
+tbody th {
     position: sticky;
     left: 0;
     background-color: white;
-    border: .5px solid #a9abad;
-  }
-@media(max-width: 1023px){    
-    .car{
+    border: 0.5px solid #a9abad;
+}
+.car__create {
+    margin: 0 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.car__tr-active,
+.car__tr:hover {
+    background-color: rgb(125, 247, 125);
+    cursor: pointer;
+    .car__th {
+        background-color: rgb(125, 247, 125);
+    }
+}
+@media (max-width: 1023px) {
+    .car {
         overflow-x: scroll;
     }
     .car__table-wrap {
         overflow: scroll;
     }
 }
-@media(max-width: 1244px){
-    .car{
+@media (max-width: 1244px) {
+    .car {
         margin: 30px 0;
     }
-    .car__table-wrap {   
+    .car__table-wrap {
         min-width: 94vw;
         margin: 0 auto;
     }
-    .car__content{
+    .car__content {
         width: 100vw;
         padding: 10px 0;
     }
 }
-
-
