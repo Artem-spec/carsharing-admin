@@ -1,0 +1,81 @@
+.car-modify {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 5;
+    pointer-events: none;
+    overflow-y: scroll;
+}
+.car-modify-active {
+    opacity: 1;
+    pointer-events: all;
+}
+.car-modify__content {
+    width: 800px;
+    height: max-content;
+    padding: 15px;
+    background-color: white;
+}
+.car-modify__group-input {
+    margin: 15px 0 30px;
+    display: flex;
+    flex-direction: column;
+}
+.car-modify__btn-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.car-modify__btn {
+    padding: 5px 15px;
+    border: rgb(3, 94, 179);
+    border-radius: 5px;
+    background-color: rgb(0, 140, 255);
+    color: white;
+}
+.car-modify__input-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.car-modify__input-wrap-right,
+.car-modify__input-wrap-left {
+    width: 50%;
+}
+.car-modify__input-wrap-right {
+    margin-left: 20px;
+}
+.car-modify__error-msg {
+    color: red;
+    display: none;
+}
+.car-modify__error {
+    display: block;
+}
+
+@media (max-width: 845px) {
+    .car-modify__content {
+        width: 400px;
+    }
+    .car-modify__input-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .car-modify__input-wrap-right,
+    .car-modify__input-wrap-left {
+        width: 100%;
+    }
+    .car-modify__input-wrap-right {
+        margin-left: 0;
+    }
+}

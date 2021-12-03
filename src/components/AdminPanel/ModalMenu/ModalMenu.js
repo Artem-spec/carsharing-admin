@@ -4,11 +4,11 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import classnamesBind from 'classnames/bind';
 import styles from './modalMenu.module.scss';
 import menuItems from '../Menu/MenuItems/utils/menuItems';
-import { Close } from '../../imgSVG/imgSVG';
+import { Cross } from '../../imgSVG/imgSVG';
 
 const ModalMenu = (props) => {
-    const { active, setActive } = props;
 
+    const { active, setActive } = props;
     const classnames = classnamesBind.bind(styles);
     const { path } = useRouteMatch();
 
@@ -37,7 +37,9 @@ const ModalMenu = (props) => {
                         ))}
                     </ul>
                 </nav>
-                <Close setActive={setActive} />
+                <span className={classnames('modal-menu__close')}>
+                    <Cross handleClick={() => setActive(false)} />
+                </span>
             </div>
         </div>
     );
