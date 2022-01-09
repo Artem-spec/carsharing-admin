@@ -27,7 +27,7 @@ const PointsFilter = (props) => {
         if (currentOptions.city !== e.target.value) {
           setFilter({
             ...filter,
-            filterCity: `cityId=${e.target.value}`,
+            filterCity: e.target.value ? `cityId=${e.target.value}` : '',
           });
           setCurrentOptions({
             ...currentOptions,
